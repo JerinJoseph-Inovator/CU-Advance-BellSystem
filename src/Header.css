@@ -1,0 +1,108 @@
+/* General Styling */
+/* Navbar Styling */
+.header {
+    z-index: 100;
+    background-color: #2c2d91; /* Navy blue background */
+    color: #fff; /* White text */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 15px; /* Adjust padding (remove extra space at top and sides) */
+    font-family: 'Arial', sans-serif;
+    height: 60px; /* Navbar height */
+    box-sizing: border-box; /* Ensures padding does not increase height */
+    margin: 0; /* Remove top margin */
+    border: none; /* Removes borders if present
+ */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    height: 100%; /* Ensure it fits within header */
+}
+
+/* Submit Button */
+.submit-container {
+    display: flex;
+    align-items: center;
+}
+
+.submit-button {
+    background-color: #e0e4f1; /* Light grey background */
+    color: #000; /* Black text */
+    padding: 6px 12px; /* Adjust padding */
+    border: none;
+    border-radius: 5px;
+    font-size: 12px; /* Smaller font */
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #c0c4d1;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 0;
+    list-style: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.dropdown-menu li {
+    padding: 10px 20px;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: #2c2d91;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Christ Logo */
+.logo-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto; 
+    margin-left: 20px; 
+}
+
+.logo {
+    max-height: 100px; 
+    width: auto; 
+    margin: 0; 
+}
+
+
+.logout-button {
+    background-color: #f44336; /* Red background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for better appearance */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px; /* Font size */
+    cursor: pointer;
+    font-weight: bold; /* Make it stand out */
+    transition: all 0.3s ease; /* Smooth hover effect */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+}
+
+.logout-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+    transform: scale(1.05); /* Slight scaling effect */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}

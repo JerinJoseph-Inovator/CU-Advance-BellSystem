@@ -1,0 +1,128 @@
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+
+.submit-button {
+  background-color: #162f81;
+  color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.title-text h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.title-text p {
+  margin: 0;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.back-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.card {
+  background-color: white;
+  width: 280px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.date-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #555;
+}
+
+.date-input::-webkit-calendar-picker-indicator {
+  color: #555;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: #162f81;
+  color: white;
+  border: 1px solid #162f81;
+  border-radius: 20px;
+  padding: 8px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.holiday-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.holiday-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.remove-button {
+  color: red;
+  font-size: 18px;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 10px;
+}

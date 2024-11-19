@@ -1,0 +1,52 @@
+.emergencyMain{
+    margin: 10%;
+    padding: 10%;
+}
+
+.passwordContainer {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .passwordLabel {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .passwordInput {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 300px;
+    font-size: 14px;
+  }
+  
+  .passwordInput:focus {
+    border-color: #2c2d91;
+    outline: none;
+  }
+  
+  .buttonEmergency {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .buttonEmergencyIN {
+    padding: 10px 20px;
+    background-color: #d9534f; /* Red button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .buttonEmergencyIN:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
