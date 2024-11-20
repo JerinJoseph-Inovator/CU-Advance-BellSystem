@@ -39,12 +39,14 @@ function Holiday() {
             dateFormat="dd-MM-yyyy"
             className="date-input"
           />
+          <div>
           <button
             className="submit-btn"
             onClick={() => selectedDate && addHoliday(selectedDate)}
           >
             SUBMIT
           </button>
+          </div>
         </div>
 
         <div className="card">
@@ -59,6 +61,7 @@ function Holiday() {
             dateFormat="dd-MM-yyyy"
             className="date-input"
           />
+          <div>
           <label>End:</label>
           <DatePicker
             selected={endDate}
@@ -70,6 +73,8 @@ function Holiday() {
             dateFormat="dd-MM-yyyy"
             className="date-input"
           />
+          </div>
+          <div>
           <button
             className="submit-btn"
             onClick={() =>
@@ -79,7 +84,7 @@ function Holiday() {
             }
           >
             SUBMIT
-          </button>
+          </button> </div>
         </div>
 
         <div className="card">

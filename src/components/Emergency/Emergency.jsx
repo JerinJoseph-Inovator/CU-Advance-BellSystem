@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Ensure axios is installed
-
-import './Emergency.css'; // Import plain CSS
+import axios from 'axios'; 
+import './Emergency.css'; 
 
 function Emergency() {
-  const [isSending, setIsSending] = useState(false); // Loading state for button
-  const [password, setPassword] = useState(''); // State for password input
-  const [isConfirmed, setIsConfirmed] = useState(false); // State for password confirmation
+  const [isSending, setIsSending] = useState(false); 
+  const [password, setPassword] = useState(''); 
+  const [isConfirmed, setIsConfirmed] = useState(false); 
 
   const handlePasswordChange = (e) => {
     const value = e.target.value;
     setPassword(value);
-    setIsConfirmed(value === 'EMERGENCY'); // Check if password matches
+    setIsConfirmed(value === 'EMERGENCY'); 
   };
 
   const handleClick = async () => {
-    setIsSending(true); // Set loading state
+    setIsSending(true); 
 
     try {
-      const data = { Mode: 5 }; // JSON data to send
-      const response = await axios.post('https://192.168.241.160:443/emergency', data); // Replace with your Raspberry Pi details
+      const data = { Mode: 5 }; 
+      const response = await axios.post('https://192.168.241.160:443/emergency', data); 
 
       if (response.status === 200) {
         console.log('Emergency signal sent successfully!');
@@ -32,7 +31,7 @@ function Emergency() {
       console.error('Error sending emergency signal:', error);
       alert('Error sending emergency signal. Please try again.');
     } finally {
-      setIsSending(false); // Reset loading state
+      setIsSending(false); 
     }
   };
 
@@ -53,7 +52,7 @@ function Emergency() {
       </div>
       <span className="buttonEmergency">
         <button
-          disabled={!isConfirmed || isSending} // Button enabled only if password matches and not sending
+          disabled={!isConfirmed || isSending} 
           onClick={handleClick}
           className="buttonEmergencyIN"
         >

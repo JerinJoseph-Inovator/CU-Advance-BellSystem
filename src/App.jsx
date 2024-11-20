@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './Header';  
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
@@ -9,64 +9,68 @@ import Holiday from './components/Holiday/DESKTOP/holiday';
 import Emergency from './components/Emergency/Emergency';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+
+  // Private Route Component to protect routes
+  const PrivateRoute = ({ children }) => {
+    return isLoggedIn ? children : <Navigate to="/" replace />;
+  };
+
   return (
     <Router>
       {/* Render the Header on every page */}
-      <Header />
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
-        {/* Render the Login page only */}
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/midsem" element={<Midsem />} />
-        <Route path="/endsem" element={<Endsem />} />
-        <Route path="/holiday" element={<Holiday />} />
-        <Route path="/emergency" element={<Emergency />} />
+        {/* Login route */}
+        <Route
+          path="/"
+          element={<Login setIsLoggedIn={setIsLoggedIn} />}
+        />
+        
+        {/* Protected Routes */}
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/midsem"
+          element={
+            <PrivateRoute>
+              <Midsem />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/endsem"
+          element={
+            <PrivateRoute>
+              <Endsem />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/holiday"
+          element={
+            <PrivateRoute>
+              <Holiday />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/emergency"
+          element={
+            <PrivateRoute>
+              <Emergency />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
-
-
-
-// import React from 'react';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-// import Header from './Header';
-// import Footer from './Footer';
-// import Login from './components/Login/Login';
-// import Home from './components/Home/Home';
-// import Midsem from './components/Midsem/DESKTOP/midsem';
-// import Endsem from './components/Endsem/DESKTOP/endsem';
-// import Holiday from './components/Holiday/DESKTOP/holiday';
-// import Emergency from './components/Emergency/Emergency';
-
-// function App() {
-//   return (
-//     <Router>
-//       <Routes>
-//         {/* Login page route */}
-//         <Route path="/" element={<Login />} />
-        
-//         {/* Protected routes wrapped with Header and Footer */}
-//         <Route
-//           element={
-//             <>
-//               <Header />
-//               <Footer />
-//             </>
-//           }
-//         >
-//           <Route path="/home" element={<Home />} />
-//           <Route path="/midsem" element={<Midsem />} />
-//           <Route path="/endsem" element={<Endsem />} />
-//           <Route path="/holiday" element={<Holiday />} />
-//           <Route path="/emergency" element={<Emergency />} />
-//         </Route>
-//       </Routes>
-//     </Router>
-//   );
-// }
-
-// export default App;

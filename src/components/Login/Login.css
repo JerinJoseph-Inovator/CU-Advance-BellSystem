@@ -4,7 +4,7 @@
   width: 100; /* Ensure it covers the full screen */
   display: flex;
   justify-content: center;
-  align-items: center; /* Center the login box vertically and horizontally */
+  align-items: center; /* Center the login box vertically and horizontally*/
   overflow: hidden; /* Prevent scrollbars */
 }
 
@@ -16,6 +16,7 @@
 }
 
 .login-page .login-card {
+  margin-top: 100px;
   background-color: #ffffff;
   padding: 2rem;
   border-radius: 10px;

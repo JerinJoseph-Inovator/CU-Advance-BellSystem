@@ -4,7 +4,7 @@ import { auth } from "./firebase.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const [values, setValues] = useState({ email: "", pass: "" });
   const [errorMsg, setErrorMsg] = useState("");
@@ -20,12 +20,22 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, values.email, values.pass)
       .then(() => {
+        // Successful login
+        setIsLoggedIn(true); // Update login status
+        setValues({ email: "", pass: "" }); // Clear form fields
         setSubmitButtonDisabled(false);
-        navigate("/Home");
+        navigate("/home"); // Redirect to home
       })
       .catch((err) => {
         setSubmitButtonDisabled(false);
-        setErrorMsg(err.message);
+        // Handle different errors more specifically
+        if (err.code === "auth/wrong-password") {
+          setErrorMsg("Incorrect password. Please try again.");
+        } else if (err.code === "auth/user-not-found") {
+          setErrorMsg("No user found with this email.");
+        } else {
+          setErrorMsg("An error occurred. Please try again later.");
+        }
       });
   };
 
@@ -34,6 +44,12 @@ const Login = () => {
       handleSubmission();
     }
   };
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    navigate("/home"); 
+  };
+  
 
   return (
     <div className="login-page">

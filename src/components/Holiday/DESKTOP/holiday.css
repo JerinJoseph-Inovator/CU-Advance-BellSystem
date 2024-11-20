@@ -50,7 +50,9 @@
 .content {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap; /* Allow wrapping of cards */
   margin-top: 40px;
+  gap: 20px; /* Add space between cards */
 }
 
 .card {
@@ -123,4 +125,17 @@ h2 {
   cursor: pointer;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center align stacked cards */
+  }
+  
+  .card {
+    width: 90%; /* Adjust card width for smaller screens */
+  }
+
+  
 }

@@ -123,7 +123,6 @@ const Endsem = () => {
             type="checkbox"
             id="slot1-checkbox"
             name="slot1-checkbox"
-            defaultChecked
           />
           <label htmlFor="slot1-checkbox">Time Slot 1:</label>
           <select
@@ -156,7 +155,6 @@ const Endsem = () => {
             type="checkbox"
             id="slot2-checkbox"
             name="slot2-checkbox"
-            defaultChecked
           />
           <label htmlFor="slot2-checkbox">Time Slot 2:</label>
           <select
