@@ -45,10 +45,6 @@ const Endsem = () => {
     setCurrentDate(newDate);
   };
 
-  const handleRefresh = () => {
-    window.location.reload();
-  };
-
   const handleUndo = () => {
     if (history.length > 0) {
       const prevSelection = history.pop();
@@ -69,6 +65,15 @@ const Endsem = () => {
     minutes: Array.from({ length: 60 }, (_, i) => String(i).padStart(2, "0")),
     periods: ["AM", "PM"],
   };
+
+  const handleRefresh = () => {
+    setCurrentDate(new Date()); // Reset to the current date
+    setSelectedDates([]); // Clear selected dates
+    setTimeSlot1({ hour: "10", minute: "00", period: "AM" }); // Reset Time Slot 1
+    setTimeSlot2({ hour: "10", minute: "00", period: "AM" }); // Reset Time Slot 2
+    setHistory([]); // Clear history
+  };
+  
 
   return (
     <div className="calendar-container">

@@ -1,40 +1,52 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import './Header.css'; // Assuming this CSS is in the same directory
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Header.css";
 import Logo from "./Logo.png";
 
 function Header({ isLoggedIn, setIsLoggedIn }) {
-  const [dropdown, setDropdown] = useState(false); // State for dropdown visibility
-  const navigate = useNavigate(); // Hook for navigation
+  const [dropdown, setDropdown] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
-    setDropdown(!dropdown);
+    setDropdown((prevDropdown) => !prevDropdown);
+  };
+
+  const handleOptionClick = () => {
+    setDropdown(false);
   };
 
   const handleLogout = () => {
-    // Logic for logout (e.g., clearing auth token)
-    setIsLoggedIn(false); // Update the login state in the parent component
+    setIsLoggedIn(false);
     alert("You have successfully logged out!");
-
-    // Redirect to the login page (root page)
     navigate("/");
   };
 
   return (
     <header className="header">
       <div className="header-content">
-        {/* Menu Button */}
+        {/* Menu Hamburger Button */}
         <div className="submit-container">
           <button onClick={toggleDropdown} className="submit-button">
-            Menu
+            {/* Unicode for Hamburger Icon */}
+            <span className="hamburger-icon">&#9776;</span>
           </button>
           {dropdown && (
             <ul className="dropdown-menu">
-              <li><Link to="/home">Home</Link></li>
-              <li><Link to="/midsem">Midsem</Link></li>
-              <li><Link to="/endsem">Endsem</Link></li>
-              <li><Link to="/holiday">Holiday</Link></li>
-              <li><Link to="/emergency">Emergency</Link></li>
+              <li onClick={handleOptionClick}>
+                <Link to="/home">Home</Link>
+              </li>
+              <li onClick={handleOptionClick}>
+                <Link to="/midsem">Midsem</Link>
+              </li>
+              <li onClick={handleOptionClick}>
+                <Link to="/endsem">Endsem</Link>
+              </li>
+              <li onClick={handleOptionClick}>
+                <Link to="/holiday">Holiday</Link>
+              </li>
+              <li onClick={handleOptionClick}>
+                <Link to="/emergency">Emergency</Link>
+              </li>
             </ul>
           )}
         </div>
@@ -44,13 +56,10 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
           <img src={Logo} alt="Christ University" className="logo" />
         </span>
 
-        {/* Logout Button (Only visible when logged in) */}
+        {/* Logout Button */}
         <div className="logout-container">
           {isLoggedIn && (
-            <button
-              onClick={handleLogout}
-              className="logout-button"
-            >
+            <button onClick={handleLogout} className="logout-button">
               Logout
             </button>
           )}
