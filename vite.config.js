@@ -7,5 +7,5 @@ export default defineConfig({
   optimizeDeps: {
     include: ['firebase/auth', 'firebase/app', 'firebase/storage'],
   },
-  base: "/vite-deploy/"
+  base: "CU-Advance-BellSystem"
 });
