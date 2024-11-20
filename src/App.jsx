@@ -17,7 +17,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename = "/CU-Advance-BellSystem">
       {/* Render the Header on every page */}
       <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
