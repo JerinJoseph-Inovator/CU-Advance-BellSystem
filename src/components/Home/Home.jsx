@@ -1,7 +1,7 @@
 import React from 'react';
 import im1 from './1.png';
 import im2 from './2.png';
-import './home.css'; // Use regular CSS file
+import './Home.css'; // Use regular CSS file
 
 function Home() {
   return (
