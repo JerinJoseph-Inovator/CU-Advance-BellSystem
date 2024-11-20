@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+.container {
+  padding: 20px;
+  width: 100%;
+  overflow: hidden; /* Prevent any overflow */
+}
+
+.slots-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px; /* Adds space between the slots */
+  margin-top: 20px;
+  flex-wrap: wrap; /* Ensures slots wrap to the next row if space is insufficient */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.slot-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box; /* Ensures padding doesn't add to width */
+  text-align: center;
+  flex-basis: calc(33.33% - 15px); /* Adjusts base width of each card */
+  flex-grow: 1; /* Allows the cards to grow to take available space */
+  min-width: 250px; /* Prevents the cards from shrinking too much on small screens */
+}
+
+.slot-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #1a2a74;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.input-date,
+.input-time {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.slot-submit-button {
+  background-color: #e6f0ff; /* Light blue */
+  color: #1a2a74; /* Dark blue */
+  border: 2px solid #1a2a74;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.slot-submit-button:hover {
+  background-color: #1a2a74;
+  color: #ffffff;
+}

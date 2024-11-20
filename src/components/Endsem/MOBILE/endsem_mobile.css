@@ -1,0 +1,123 @@
+.calendar-container {
+  font-family: Arial, sans-serif;
+  width: 320px;
+  margin: auto;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #e6ecf3;
+  padding: 5px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f1a58;
+  color: white;
+  padding: 10px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.menu-button, .back-button {
+  color: white;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.calendar-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.nav-button {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.calendar {
+  text-align: center;
+  width: 100%;
+}
+
+.month {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.days {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  padding: 5px 0;
+}
+
+.dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.date, .empty {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #333;
+}
+
+.selected {
+  background-color: #2d3a88;
+  color: white;
+}
+
+.time-slots {
+  margin: 15px;
+  font-size: 16px;
+}
+
+.slot-label {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.input-field {
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 60%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.action-button {
+  padding: 8px 12px;
+  background-color: #1f1a58;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #3d2a88;
+}
