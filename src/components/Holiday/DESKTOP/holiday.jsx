@@ -1,5 +1,3 @@
-// App.js
-
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,7 +10,17 @@ function Holiday() {
   const [holidays, setHolidays] = useState([]);
 
   const addHoliday = (date) => {
-    setHolidays([...holidays, date.toLocaleDateString("en-GB")]);
+    const formattedDate = date.toLocaleDateString("en-GB");
+    if (!holidays.includes(formattedDate)) {
+      setHolidays((prev) => [...prev, formattedDate]);
+    }
+  };
+
+  const addHolidayRange = (start, end) => {
+    const formattedRange = `${start.toLocaleDateString("en-GB")} - ${end.toLocaleDateString("en-GB")}`;
+    if (!holidays.includes(formattedRange)) {
+      setHolidays((prev) => [...prev, formattedRange]);
+    }
   };
 
   const removeHoliday = (date) => {
@@ -21,7 +29,6 @@ function Holiday() {
 
   return (
     <div className="container">
-     
       <div className="content">
         <div className="card">
           <h2>SELECT DATE</h2>
@@ -32,7 +39,12 @@ function Holiday() {
             dateFormat="dd-MM-yyyy"
             className="date-input"
           />
-          <button className="submit-btn" onClick={() => selectedDate && addHoliday(selectedDate)}>SUBMIT</button>
+          <button
+            className="submit-btn"
+            onClick={() => selectedDate && addHoliday(selectedDate)}
+          >
+            SUBMIT
+          </button>
         </div>
 
         <div className="card">
@@ -58,7 +70,16 @@ function Holiday() {
             dateFormat="dd-MM-yyyy"
             className="date-input"
           />
-          <button className="submit-btn" onClick={() => startDate && endDate && addHoliday(`${startDate.toLocaleDateString("en-GB")} - ${endDate.toLocaleDateString("en-GB")}`)}>SUBMIT</button>
+          <button
+            className="submit-btn"
+            onClick={() =>
+              startDate &&
+              endDate &&
+              addHolidayRange(startDate, endDate)
+            }
+          >
+            SUBMIT
+          </button>
         </div>
 
         <div className="card">
@@ -67,7 +88,10 @@ function Holiday() {
             {holidays.map((holiday, index) => (
               <li key={index} className="holiday-item">
                 {holiday}
-                <span className="remove-button" onClick={() => removeHoliday(holiday)}>
+                <span
+                  className="remove-button"
+                  onClick={() => removeHoliday(holiday)}
+                >
                   &#10005;
                 </span>
               </li>

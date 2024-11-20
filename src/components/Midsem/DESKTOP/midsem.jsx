@@ -31,4 +31,3 @@ function Midsem() {
 }
 
 export default Midsem;
-
