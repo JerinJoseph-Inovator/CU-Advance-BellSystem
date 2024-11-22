@@ -7,6 +7,7 @@ import Midsem from './components/Midsem/DESKTOP/midsem';
 import Endsem from './components/Endsem/DESKTOP/endsem';
 import Holiday from './components/Holiday/DESKTOP/holiday';
 import Emergency from './components/Emergency/Emergency';
+import Display from './components/Display/Display';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
@@ -17,7 +18,7 @@ function App() {
   };
 
   return (
-    <Router basename = "/CU-Advance-BellSystem">
+    <Router basename = "CU-Advance-BellSystem">
       {/* Render the Header on every page */}
       <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
@@ -68,6 +69,15 @@ function App() {
             </PrivateRoute>
           }
         />
+         <Route
+          path="/display"
+          element={
+            <PrivateRoute>
+              <Display />
+            </PrivateRoute>
+          }
+        />
+        
       </Routes>
     </Router>
   );

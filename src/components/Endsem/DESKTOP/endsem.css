@@ -1,9 +1,9 @@
 .calendar-container {
-  margin: 50px;
+  margin-top: 20px;
+  margin-left: 30%;
+  margin-right: 15%;
   font-family: Arial, sans-serif;
   width: 500px;
-  margin-left: auto;
-  margin-right: auto;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   background-color: #e6ecf3;
@@ -30,7 +30,8 @@
   align-items: center;
   padding: 10px;
   margin-top: 10px;
-  border: 0.1rem ridge;
+  /* border: 0.1rem ridge; */
+  background-color: #F6D6D6;
 }
 
 .calendar {
@@ -121,3 +122,93 @@ input[type="text"] {
 .action-button:hover {
   background-color: #3d2a88;
 }
+
+
+@media only screen and (max-width: 768px) {
+  .calendar-container {
+    margin: auto; 
+    margin-top: 20px;
+    width: 90%; 
+    border: none;
+    border-radius: 0;
+    background-color: #f9f9f9;
+    display: flex; 
+    flex-direction: column; /* Ensure content stacks vertically */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .calendar-main {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .calendar {
+    text-align: center;
+  }
+
+  .month {
+    font-size: 18px; /* Slightly smaller font size for the month */
+  }
+
+  .days {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px; /* Reduce font size for days */
+    gap: 0; /* Avoid gaps between day names */
+  }
+
+  .dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Ensure 7 columns for dates */
+    gap: 5px; /* Consistent gap between dates */
+  }
+
+  .date, .empty {
+    width: auto; /* Use proportional width */
+    height: auto; /* Use proportional height */
+    aspect-ratio: 1; /* Maintain square shape */
+    font-size: 12px; /* Smaller font for dates */
+    padding: 5px; /* Reduce padding */
+  }
+
+  .selected {
+    background-color: #2d3a88;
+    color: white;
+  }
+
+  .time-slots {
+    margin: 10px;
+    font-size: 14px;
+  }
+
+  .slot-label select {
+    font-size: 12px;
+    padding: 3px;
+  }
+
+  input[type="text"] {
+    width: 90%; /* Slightly smaller width */
+    margin: 5px 0;
+    padding: 8px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .action-button {
+    width: 100%; /* Full width for buttons */
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+

@@ -36,6 +36,9 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
                 <Link to="/home">Home</Link>
               </li>
               <li onClick={handleOptionClick}>
+                <Link to="/display">Display</Link>
+              </li>
+              <li onClick={handleOptionClick}>
                 <Link to="/midsem">Midsem</Link>
               </li>
               <li onClick={handleOptionClick}>
@@ -47,6 +50,7 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
               <li onClick={handleOptionClick}>
                 <Link to="/emergency">Emergency</Link>
               </li>
+              
             </ul>
           )}
         </div>

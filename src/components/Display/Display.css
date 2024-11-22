@@ -1,0 +1,60 @@
+.container_d {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #eaf3ff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    margin-top: 40px;
+  }
+  
+  .table_d {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .header_d {
+    background-color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .cell_d {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    height: 40px;
+  }
+  
+  .navigation_d {
+    display: flex;
+    justify-content: center; /* Centers buttons horizontally */
+    align-items: center;
+    gap: 20px; /* Adds space between buttons */
+  }
+  
+  .arrowButton_d {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .arrowButton_d:hover {
+    background-color: #f0f0f0; /* Subtle hover effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .arrowButton_d:active {
+    background-color: #ddd;
+    box-shadow: none;
+  }
+  
