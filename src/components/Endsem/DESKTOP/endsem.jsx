@@ -4,8 +4,8 @@ import "./endsem.css";
 const Endsem = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDates, setSelectedDates] = useState([]);
-  const [timeSlot1, setTimeSlot1] = useState({ hour: "10", minute: "00", period: "AM" });
-  const [timeSlot2, setTimeSlot2] = useState({ hour: "10", minute: "00", period: "AM" });
+  const [timeSlot1, setTimeSlot1] = useState({ hour: "10", minute: "00", period: "AM", selected: false });
+  const [timeSlot2, setTimeSlot2] = useState({ hour: "10", minute: "00", period: "AM", selected: false });
   const [history, setHistory] = useState([]);
 
   const getMonthDays = (year, month) => {
@@ -55,8 +55,26 @@ const Endsem = () => {
 
   const handleReset = () => {
     setSelectedDates([]);
-    setTimeSlot1({ hour: "10", minute: "00", period: "AM" });
-    setTimeSlot2({ hour: "10", minute: "00", period: "AM" });
+    setTimeSlot1({ hour: "10", minute: "00", period: "AM", selected: false });
+    setTimeSlot2({ hour: "10", minute: "00", period: "AM", selected: false });
+    setHistory([]);
+  };
+
+  const handleTimeSlotSelection = (slot) => {
+    if (slot === 1) {
+      setTimeSlot1({ ...timeSlot1, selected: true });
+      setTimeSlot2({ ...timeSlot2, selected: false });
+    } else {
+      setTimeSlot2({ ...timeSlot2, selected: true });
+      setTimeSlot1({ ...timeSlot1, selected: false });
+    }
+  };
+
+  const handleRefresh = () => {
+    setCurrentDate(new Date());
+    setSelectedDates([]);
+    setTimeSlot1({ hour: "10", minute: "00", period: "AM", selected: false });
+    setTimeSlot2({ hour: "10", minute: "00", period: "AM", selected: false });
     setHistory([]);
   };
 
@@ -66,12 +84,53 @@ const Endsem = () => {
     periods: ["AM", "PM"],
   };
 
-  const handleRefresh = () => {
-    setCurrentDate(new Date()); // Reset to the current date
-    setSelectedDates([]); // Clear selected dates
-    setTimeSlot1({ hour: "10", minute: "00", period: "AM" }); // Reset Time Slot 1
-    setTimeSlot2({ hour: "10", minute: "00", period: "AM" }); // Reset Time Slot 2
-    setHistory([]); // Clear history
+  const handleSave = () => {
+    // Function to convert time from AM/PM to 24-hour format
+    const convertTo24HourFormat = (hour, minute, period) => {
+      let hours = parseInt(hour);
+      if (period === "PM" && hours !== 12) {
+        hours += 12; // Convert PM hours to 24-hour format
+      }
+      if (period === "AM" && hours === 12) {
+        hours = 0; // Convert 12 AM to 00 in 24-hour format
+      }
+      return `${hours.toString().padStart(2, "0")}:${minute}:${"00"}`; // Format time as hh:mm:ss
+    };
+  
+    // Convert the selected time slot to 24-hour format
+    const formattedTime = convertTo24HourFormat(timeSlot1.hour, timeSlot1.minute, timeSlot1.period);
+  
+    // Prepare the payload with `date` in JSON format
+    const formattedDates = selectedDates.reduce((acc, date) => {
+      const [year, month, day] = date.split("-");
+      acc[`${day.padStart(2, "0")}/${month.padStart(2, "0")}/${year.slice(2)}`] = null; // Use null for values in JSON object
+      return acc;
+    }, {});
+  
+    const payload = {
+      mode: "2",
+      slot: "1", // Use slot 1 here; dynamically check if needed
+      date: formattedDates,
+      start_time: formattedTime,
+    };
+  
+    // Send the data to the server
+    fetch("http://172.16.216.251:5000/endsem", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Data sent successfully:", data);
+      })
+      .catch((error) => {
+        console.error("Error sending data:", error);
+      });
+  
+    console.log(payload);
   };
   
 
@@ -125,14 +184,17 @@ const Endsem = () => {
         />
         <div className="slot-label">
           <input
-            type="checkbox"
+            type="radio"
             id="slot1-checkbox"
-            name="slot1-checkbox"
+            name="time-slot"
+            checked={timeSlot1.selected}
+            onChange={() => handleTimeSlotSelection(1)}
           />
           <label htmlFor="slot1-checkbox">Time Slot 1:</label>
           <select
             value={timeSlot1.hour}
             onChange={(e) => setTimeSlot1({ ...timeSlot1, hour: e.target.value })}
+            disabled={!timeSlot1.selected}
           >
             {timeOptions.hours.map((hour) => (
               <option key={hour}>{hour}</option>
@@ -141,6 +203,7 @@ const Endsem = () => {
           <select
             value={timeSlot1.minute}
             onChange={(e) => setTimeSlot1({ ...timeSlot1, minute: e.target.value })}
+            disabled={!timeSlot1.selected}
           >
             {timeOptions.minutes.map((minute) => (
               <option key={minute}>{minute}</option>
@@ -149,6 +212,7 @@ const Endsem = () => {
           <select
             value={timeSlot1.period}
             onChange={(e) => setTimeSlot1({ ...timeSlot1, period: e.target.value })}
+            disabled={!timeSlot1.selected}
           >
             {timeOptions.periods.map((period) => (
               <option key={period}>{period}</option>
@@ -157,14 +221,17 @@ const Endsem = () => {
         </div>
         <div className="slot-label">
           <input
-            type="checkbox"
+            type="radio"
             id="slot2-checkbox"
-            name="slot2-checkbox"
+            name="time-slot"
+            checked={timeSlot2.selected}
+            onChange={() => handleTimeSlotSelection(2)}
           />
           <label htmlFor="slot2-checkbox">Time Slot 2:</label>
           <select
             value={timeSlot2.hour}
             onChange={(e) => setTimeSlot2({ ...timeSlot2, hour: e.target.value })}
+            disabled={!timeSlot2.selected}
           >
             {timeOptions.hours.map((hour) => (
               <option key={hour}>{hour}</option>
@@ -173,6 +240,7 @@ const Endsem = () => {
           <select
             value={timeSlot2.minute}
             onChange={(e) => setTimeSlot2({ ...timeSlot2, minute: e.target.value })}
+            disabled={!timeSlot2.selected}
           >
             {timeOptions.minutes.map((minute) => (
               <option key={minute}>{minute}</option>
@@ -181,6 +249,7 @@ const Endsem = () => {
           <select
             value={timeSlot2.period}
             onChange={(e) => setTimeSlot2({ ...timeSlot2, period: e.target.value })}
+            disabled={!timeSlot2.selected}
           >
             {timeOptions.periods.map((period) => (
               <option key={period}>{period}</option>
@@ -199,7 +268,7 @@ const Endsem = () => {
         <button className="action-button" onClick={handleReset}>
           RESET
         </button>
-        <button className="action-button">SAVE</button>
+        <button className="action-button" onClick={handleSave}>SAVE</button>
       </div>
     </div>
   );

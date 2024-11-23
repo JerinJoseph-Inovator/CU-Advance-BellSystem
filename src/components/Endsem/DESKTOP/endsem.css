@@ -133,9 +133,9 @@ input[type="text"] {
     border-radius: 0;
     background-color: #f9f9f9;
     display: flex; 
-    flex-direction: column; /* Ensure content stacks vertically */
-    align-items: center; /* Center content horizontally */
-    justify-content: center; /* Center content vertically */
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
   }
 
   .calendar-header {
@@ -154,20 +154,20 @@ input[type="text"] {
   }
 
   .month {
-    font-size: 18px; /* Slightly smaller font size for the month */
+    font-size: 18px; 
   }
 
   .days {
     display: flex;
     justify-content: space-between;
-    font-size: 14px; /* Reduce font size for days */
-    gap: 0; /* Avoid gaps between day names */
+    font-size: 14px; 
+    gap: 0; 
   }
 
   .dates {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* Ensure 7 columns for dates */
-    gap: 5px; /* Consistent gap between dates */
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 5px; 
   }
 
   .date, .empty {

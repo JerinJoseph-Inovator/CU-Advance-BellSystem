@@ -17,8 +17,8 @@ function Emergency() {
     setIsSending(true); 
 
     try {
-      const data = { Mode: 5 }; 
-      const response = await axios.post('https://192.168.241.160:443/emergency', data); 
+      const data = { mode: '1' }; // Updated data object
+      const response = await axios.post('http://172.16.216.251:5000/emergency', data); 
 
       if (response.status === 200) {
         console.log('Emergency signal sent successfully!');
