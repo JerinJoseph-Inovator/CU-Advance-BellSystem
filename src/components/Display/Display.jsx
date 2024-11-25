@@ -8,16 +8,16 @@ function Display() {
   const rowsPerPage = 7; // Number of rows per page
 
   // Fetch data from the server
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://172.16.216.251:5000/display"); // Replace with your Flask endpoint
-        setData(response.data); // Assume server sends an array of objects
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://172.16.216.251:5000/display"); // Replace with your Flask endpoint
+      setData(response.data); // Assume server sends an array of objects
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -74,6 +74,12 @@ function Display() {
         >
           &larr;
         </button>
+
+        {/* Refresh Button */}
+        <button className="refreshButton_d" onClick={fetchData}>
+          Refresh
+        </button>
+
         <button
           className="arrowButton_d"
           onClick={handleNextPage}

@@ -34,32 +34,32 @@ function Holiday() {
 
   const sendHoliday = async (holiday) => {
     let payload = {};
-  
+
     if (holiday.type === "single") {
       payload = {
-        mode: "0",  // Replacing "type" with "mode"
-        date: holiday.value,  // use the exact date as a string
+        mode: "0", // Replacing "type" with "mode"
+        date: holiday.value, // use the exact date as a string
       };
     } else if (holiday.type === "range") {
       const { start, end } = holiday;
       payload = {
-        mode: "0",  // Replacing "type" with "mode"
-        startDate: start.toLocaleDateString("en-GB"),  // start date as string
-        endDate: end.toLocaleDateString("en-GB"),      // end date as string
+        mode: "0", // Replacing "type" with "mode"
+        startDate: start.toLocaleDateString("en-GB"), // start date as string
+        endDate: end.toLocaleDateString("en-GB"), // end date as string
       };
     }
-  
+
     try {
       const response = await fetch(serverUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),  // Send the payload as JSON
+        body: JSON.stringify(payload), // Send the payload as JSON
       });
-  
+
       console.log(payload);
-  
+
       if (response.ok) {
         alert(`Successfully sent: ${JSON.stringify(payload)}`);
       } else {
@@ -69,8 +69,6 @@ function Holiday() {
       alert(`Error: ${error.message}`);
     }
   };
-  
-  
 
   return (
     <div className="container">
@@ -146,7 +144,7 @@ function Holiday() {
                   &#10005;
                 </span>
                 <button
-                  className="send-btn"
+                  className="submit-btn"
                   onClick={() => sendHoliday(holiday)}
                 >
                   SUBMIT

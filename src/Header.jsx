@@ -27,7 +27,6 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
         {/* Menu Hamburger Button */}
         <div className="submit-container">
           <button onClick={toggleDropdown} className="submit-button">
-            {/* Unicode for Hamburger Icon */}
             <span className="hamburger-icon">&#9776;</span>
           </button>
           {dropdown && (
@@ -37,6 +36,9 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
               </li>
               <li onClick={handleOptionClick}>
                 <Link to="/display">Display</Link>
+              </li>
+              <li onClick={handleOptionClick}>
+                <Link to="/schedule">Schedule</Link>
               </li>
               <li onClick={handleOptionClick}>
                 <Link to="/midsem">Midsem</Link>
@@ -50,15 +52,12 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
               <li onClick={handleOptionClick}>
                 <Link to="/emergency">Emergency</Link>
               </li>
-              
             </ul>
           )}
         </div>
 
         {/* Logo */}
-        <span className="logo-container">
-          <img src={Logo} alt="Christ University" className="logo" />
-        </span>
+        <img src={Logo} alt="Christ University" className="logo-direct" />
 
         {/* Logout Button */}
         <div className="logout-container">

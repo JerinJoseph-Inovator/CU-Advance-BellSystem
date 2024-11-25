@@ -8,6 +8,7 @@ import Endsem from './components/Endsem/DESKTOP/endsem';
 import Holiday from './components/Holiday/DESKTOP/holiday';
 import Emergency from './components/Emergency/Emergency';
 import Display from './components/Display/Display';
+import Schedule from './components/Schedule/schedule';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
@@ -74,6 +75,14 @@ function App() {
           element={
             <PrivateRoute>
               <Display />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/schedule"
+          element={
+            <PrivateRoute>
+              <Schedule />
             </PrivateRoute>
           }
         />
