@@ -10,7 +10,7 @@ function Display() {
   // Fetch data from the server
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://172.16.216.251:5000/display"); // Replace with your Flask endpoint
+      const response = await axios.get("https://172.16.216.251:5000/display"); // Replace with your Flask endpoint
       setData(response.data); // Assume server sends an array of objects
     } catch (error) {
       console.error("Error fetching data:", error);
