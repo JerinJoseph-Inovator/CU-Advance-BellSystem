@@ -5,15 +5,17 @@
   padding: 20px;
 }
 
-.submit-button {
+.submit-btn {
   background-color: #162f81;
   color: white;
-  border: 1px solid white;
+  border: 1px solid #162f81;
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 8px 20px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
+  height: auto; /* Ensure it doesn't stretch unnecessarily */
+  align-self: center; /* Aligns button within the flex container */
 }
 
 .title {
@@ -99,6 +101,11 @@ h2 {
   border-radius: 8px;
   font-size: 14px;
   color: #333;
+  height: 60px; /* Optional: Consistent height for all items */
+}
+
+.holiday-item > * {
+  margin: 0; /* Remove any additional margins for children */
 }
 
 .submit-btn {
@@ -110,14 +117,8 @@ h2 {
   cursor: pointer;
   font-weight: bold;
   font-size: 14px;
-  margin: 0; /* Remove margin */
-  height: 100%; /* Ensure it stretches vertically */
-}
-
-.holiday-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  height: auto; /* Ensure it doesn't stretch unnecessarily */
+  align-self: center; /* Aligns button within the flex container */
 }
 
 .remove-button {
@@ -126,6 +127,13 @@ h2 {
   cursor: pointer;
   padding-left: 10px;
   padding-right: 10px;
+  align-self: center; /* Ensures the remove button aligns properly */
+}
+
+.holiday-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -133,10 +141,8 @@ h2 {
     flex-direction: column; /* Stack cards vertically */
     align-items: center; /* Center align stacked cards */
   }
-  
+
   .card {
     width: 90%; /* Adjust card width for smaller screens */
   }
-
-  
 }

@@ -12,26 +12,37 @@ function ScheduleTime() {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      addTime();
+    }
+  };
+
   const removeTime = (timeToRemove) => {
     setTimesList(timesList.filter((t) => t !== timeToRemove));
+  };
+
+  const handleSubmit = () => {
+    console.log("Submitted times:", timesList);
   };
 
   return (
     <div className="container">
       <div className="content">
         <div className="card">
-          <h2>SCHEDULE TIME (IN MINS)</h2>
-          <label>Time:</label>
+          <h2>SCHEDULE TIME</h2>
+          <label>Enter Time:</label>
           <input
             type="number"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            placeholder="Enter time in mins"
+            onKeyDown={handleKeyDown} // Added onKeyDown listener
+            placeholder="Enter time (in mins)"
             className="time-input"
           />
           <div>
             <button className="submit-btn" onClick={addTime}>
-              SUBMIT
+              ADD TIME
             </button>
           </div>
         </div>
@@ -51,6 +62,11 @@ function ScheduleTime() {
               </li>
             ))}
           </ul>
+          <div>
+            <button className="submit-btn" onClick={handleSubmit}>
+              SUBMIT TIMES
+            </button>
+          </div>
         </div>
       </div>
     </div>

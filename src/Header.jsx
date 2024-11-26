@@ -32,25 +32,25 @@ function Header({ isLoggedIn, setIsLoggedIn }) {
           {dropdown && (
             <ul className="dropdown-menu">
               <li onClick={handleOptionClick}>
-                <Link to="/home">Home</Link>
+                <Link to="/home">HOME</Link>
               </li>
               <li onClick={handleOptionClick}>
-                <Link to="/display">Display</Link>
+                <Link to="/display">DISPLAY</Link>
               </li>
               <li onClick={handleOptionClick}>
-                <Link to="/schedule">Schedule</Link>
+                <Link to="/schedule">SCHEDULE</Link>
               </li>
               <li onClick={handleOptionClick}>
-                <Link to="/midsem">Midsem</Link>
+                <Link to="/midsem">MIDSEM</Link>
               </li>
               <li onClick={handleOptionClick}>
-                <Link to="/endsem">Endsem</Link>
+                <Link to="/endsem">ENDSEM</Link>
               </li>
               <li onClick={handleOptionClick}>
-                <Link to="/holiday">Holiday</Link>
+                <Link to="/holiday">HOLIDAY</Link>
               </li>
               <li onClick={handleOptionClick}>
-                <Link to="/emergency">Emergency</Link>
+                <Link to="/emergency">EMERGENCY</Link>
               </li>
             </ul>
           )}

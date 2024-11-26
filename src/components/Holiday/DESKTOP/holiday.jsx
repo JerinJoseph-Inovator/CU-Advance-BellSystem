@@ -19,7 +19,9 @@ function Holiday() {
   };
 
   const addHolidayRange = (start, end) => {
-    const formattedRange = `${start.toLocaleDateString("en-GB")} - ${end.toLocaleDateString("en-GB")}`;
+    const formattedRange = `${start.toLocaleDateString(
+      "en-GB"
+    )} - ${end.toLocaleDateString("en-GB")}`;
     if (!holidays.some((holiday) => holiday.value === formattedRange)) {
       setHolidays((prev) => [
         ...prev,
@@ -74,7 +76,7 @@ function Holiday() {
     <div className="container">
       <div className="content">
         <div className="card">
-          <h2>SELECT DATE</h2>
+          <h2>SELECT SINGLE DATE</h2>
           <label>Select:</label>
           <DatePicker
             selected={selectedDate}
@@ -93,7 +95,7 @@ function Holiday() {
         </div>
 
         <div className="card">
-          <h2>SELECT RANGE</h2>
+          <h2>SELECT MULTIPLE DATES</h2>
           <label>Start:</label>
           <DatePicker
             selected={startDate}
@@ -126,13 +128,13 @@ function Holiday() {
                 addHolidayRange(startDate, endDate)
               }
             >
-              ADD RANGE
+              ADD DATES
             </button>
           </div>
         </div>
 
         <div className="card">
-          <h2>ADDED HOLIDAYS</h2>
+          <h2>HOLIDAYS ADDED</h2>
           <ul className="holiday-list">
             {holidays.map((holiday, index) => (
               <li key={index} className="holiday-item">
@@ -141,7 +143,7 @@ function Holiday() {
                   className="remove-button"
                   onClick={() => removeHoliday(holiday.value)}
                 >
-                  &#10005;
+                  ❌
                 </span>
                 <button
                   className="submit-btn"
