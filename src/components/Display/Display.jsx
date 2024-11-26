@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import Axios for API requests
+import https from "https"; // Import https for creating an agent
 import "./Display.css";
 
 function Display() {
@@ -7,10 +8,17 @@ function Display() {
   const [currentPage, setCurrentPage] = useState(0); // State for pagination
   const rowsPerPage = 7; // Number of rows per page
 
+  // Create an HTTPS agent to bypass SSL verification
+  const httpsAgent = new https.Agent({
+    rejectUnauthorized: false, // Disable SSL verification
+  });
+
   // Fetch data from the server
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://172.16.216.251:5000/display"); // Replace with your Flask endpoint
+      const response = await axios.get("https://172.16.216.251:5000/display", {
+        httpsAgent, // Add the custom HTTPS agent here
+      });
       setData(response.data); // Assume server sends an array of objects
     } catch (error) {
       console.error("Error fetching data:", error);
