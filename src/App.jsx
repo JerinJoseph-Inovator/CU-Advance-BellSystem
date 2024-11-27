@@ -14,8 +14,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Determine the basename dynamically
-  const basename =
-    process.env.NODE_ENV === 'production' ? '/CU-Advance-BellSystem' : '/';
+  const basename = '/';
+    // process.env.NODE_ENV === 'production' ? '/main' : '/';
 
   // Private Route Component to protect routes
   const PrivateRoute = ({ children }) => {
