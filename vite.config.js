@@ -7,7 +7,7 @@ export default defineConfig({
   optimizeDeps: {
     include: ['firebase/auth', 'firebase/app', 'firebase/storage'],
   },
-  base: "CU-Advance-BellSystem"
+  base: "/",
 
   
 });

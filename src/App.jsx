@@ -11,7 +11,11 @@ import Display from './components/Display/Display';
 import Schedule from './components/Schedule/schedule';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Determine the basename dynamically
+  const basename =
+    process.env.NODE_ENV === 'production' ? '/CU-Advance-BellSystem' : '/';
 
   // Private Route Component to protect routes
   const PrivateRoute = ({ children }) => {
@@ -19,17 +23,10 @@ function App() {
   };
 
   return (
-    <Router basename = "CU-Advance-BellSystem">
-      {/* Render the Header on every page */}
+    <Router basename={basename}>
       <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
-        {/* Login route */}
-        <Route
-          path="/"
-          element={<Login setIsLoggedIn={setIsLoggedIn} />}
-        />
-        
-        {/* Protected Routes */}
+        <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route
           path="/home"
           element={
@@ -70,7 +67,7 @@ function App() {
             </PrivateRoute>
           }
         />
-         <Route
+        <Route
           path="/display"
           element={
             <PrivateRoute>
@@ -86,7 +83,6 @@ function App() {
             </PrivateRoute>
           }
         />
-        
       </Routes>
     </Router>
   );
