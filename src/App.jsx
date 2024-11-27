@@ -15,7 +15,7 @@ function App() {
 
   // Determine the basename dynamically
   const basename =
-    process.env.NODE_ENV === 'production' ? '/CU-Advance-BellSystem' : '/';
+    process.env.NODE_ENV === 'production' ? '/' : '/';
 
   // Private Route Component to protect routes
   const PrivateRoute = ({ children }) => {
