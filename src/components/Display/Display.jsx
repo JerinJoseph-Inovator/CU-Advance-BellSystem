@@ -9,14 +9,14 @@ function Display() {
   const rowsPerPage = 7; // Number of rows per page
 
   // Create an HTTPS agent to bypass SSL verification
-  const httpsAgent = new https.Agent({
-    rejectUnauthorized: false, // Disable SSL verification
-  });
+  // const httpsAgent = new https.Agent({
+  //   rejectUnauthorized: false, // Disable SSL verification
+  // });
 
   // Fetch data from the server
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://172.16.216.251:5000/display", {
+      const response = await axios.get("https://172.16.216.251:8000/display", {
         httpsAgent, // Add the custom HTTPS agent here
       });
       setData(response.data); // Assume server sends an array of objects

@@ -115,7 +115,7 @@ const Endsem = () => {
     };
   
     // Send the data to the server
-    fetch("https://172.16.216.251:5000/endsem", {
+    fetch("https://172.16.216.251:8000/endsem", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
