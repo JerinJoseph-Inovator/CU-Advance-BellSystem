@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
+import https from 'https'; // Importing https for creating an agent
 import './Emergency.css'; 
 
 function Emergency() {
@@ -16,9 +17,16 @@ function Emergency() {
   const handleClick = async () => {
     setIsSending(true); 
 
+    // Create an HTTPS agent to disable SSL verification
+    const httpsAgent = new https.Agent({
+      rejectUnauthorized: false, // Disable SSL verification for self-signed certificates
+    });
+
     try {
       const data = { mode: '1' }; // Updated data object
-      const response = await axios.post('https://172.16.216.251:8000/emergency', data); 
+      const response = await axios.post('https://172.16.216.251:8000/emergency', data, {
+        httpsAgent, // Adding the custom HTTPS agent
+      });
 
       if (response.status === 200) {
         console.log('Emergency signal sent successfully!');
