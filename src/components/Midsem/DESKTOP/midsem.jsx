@@ -38,7 +38,7 @@ function Midsem() {
     };
 
     // Send the data to the server
-    fetch('https://172.16.216.251:8000/midsem', {
+    fetch('http://172.16.216.251:8000/midsem', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
