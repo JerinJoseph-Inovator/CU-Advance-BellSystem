@@ -1,17 +1,16 @@
-/* Footer Styling */
 .footer {
-  text-align: center; /* Default for text */
+  text-align: center;
   background-color: transparent;
   display: flex;
-  justify-content: flex-end; /* Align content to the right (icons) */
+  justify-content: flex-end; 
   align-items: center;
   padding: 10px 20px;
   position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: none; /* Remove the shadow */
-  border: none; /* Remove any border */
+  box-shadow: none; 
+  border: none; 
 }
 
 /* Footer Content */
@@ -32,11 +31,17 @@
   transform: scale(1.1);
 }
 
-/* About Us page specific styling */
 .about-us .footer {
-  justify-content: center; /* Center align the content (Team Millennium text) */
+  display: flex; /* Enables flexbox layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  text-align: center; /* Centers text inside */
+  margin: 0 auto; /* Ensures proper centering */
+  width: 100%; /* Ensures the footer spans the full width */
 }
 
+
+
 .about-us .footer p {
-  margin: 0; /* Ensure no margins around the text */
+  margin: 0;
 }
