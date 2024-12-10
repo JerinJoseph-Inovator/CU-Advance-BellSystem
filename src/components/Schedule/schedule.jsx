@@ -1,29 +1,47 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./schedule.css";
 
 function ScheduleTime() {
   const [time, setTime] = useState("");
-  const [timesList, setTimesList] = useState([]);
-
-  const addTime = () => {
-    if (time && !timesList.includes(time)) {
-      setTimesList([...timesList, time]);
-      setTime("");
-    }
-  };
+  const [isSending, setIsSending] = useState(false);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      addTime();
+      handleSubmit();
     }
   };
 
-  const removeTime = (timeToRemove) => {
-    setTimesList(timesList.filter((t) => t !== timeToRemove));
-  };
+  const handleSubmit = async () => {
+    if (!time) {
+      alert("Please enter a valid time!");
+      return;
+    }
 
-  const handleSubmit = () => {
-    console.log("Submitted times:", timesList);
+    setIsSending(true);
+
+    try {
+      const data = { "time": Number(time) }; // Sending the input time as { time: N }
+      const response = await axios.post("http://172.16.216.251:8080/schedule", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.status === 200) {
+        console.log("Time submitted successfully:", response.data);
+        alert("Time submitted successfully!");
+        setTime(""); // Reset input field after submission
+      } else {
+        console.error("Error submitting time:", response.statusText);
+        alert("Error submitting time. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting time:", error);
+      alert("Error submitting time. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -36,35 +54,17 @@ function ScheduleTime() {
             type="number"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            onKeyDown={handleKeyDown} // Added onKeyDown listener
+            onKeyDown={handleKeyDown}
             placeholder="Enter time (in mins)"
             className="time-input"
           />
           <div>
-            <button className="submit-btn" onClick={addTime}>
-              ADD TIME
-            </button>
-          </div>
-        </div>
-
-        <div className="card">
-          <h2>ADDED TIMES</h2>
-          <ul className="time-list">
-            {timesList.map((addedTime, index) => (
-              <li key={index} className="time-item">
-                {addedTime} mins
-                <span
-                  className="remove-button"
-                  onClick={() => removeTime(addedTime)}
-                >
-                  ❌
-                </span>
-              </li>
-            ))}
-          </ul>
-          <div>
-            <button className="submit-btn" onClick={handleSubmit}>
-              SUBMIT TIMES
+            <button
+              className="submit-btn"
+              onClick={handleSubmit}
+              disabled={isSending}
+            >
+              {isSending ? "Submitting..." : "SUBMIT TIME"}
             </button>
           </div>
         </div>

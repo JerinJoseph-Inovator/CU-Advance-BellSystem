@@ -9,7 +9,7 @@ function Holiday() {
   const [endDate, setEndDate] = useState(null);
   const [holidays, setHolidays] = useState([]);
 
-  const serverUrl = "http://172.16.216.251:8000/holiday";
+  const serverUrl = "http://172.16.216.251:8080/holiday";
 
   const addHoliday = (date) => {
     const formattedDate = date.toLocaleDateString("en-GB");

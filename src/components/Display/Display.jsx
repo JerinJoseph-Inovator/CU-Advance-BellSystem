@@ -16,7 +16,7 @@ function Display() {
   // Fetch data from the server
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://172.16.216.251:8000/display", {
+      const response = await axios.get("http://172.16.216.251:8080/display", {
         httpsAgent, // Add the custom HTTPS agent here
       });
       setData(response.data); // Assume server sends an array of objects
