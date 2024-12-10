@@ -1,0 +1,42 @@
+/* Footer Styling */
+.footer {
+  text-align: center; /* Default for text */
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-end; /* Align content to the right (icons) */
+  align-items: center;
+  padding: 10px 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: none; /* Remove the shadow */
+  border: none; /* Remove any border */
+}
+
+/* Footer Content */
+.footer-content {
+  display: flex;
+  gap: 20px;
+}
+
+/* Footer Icons */
+.footer-icon {
+  color: #2c2d91;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.footer-icon:hover {
+  color: #1e1f70;
+  transform: scale(1.1);
+}
+
+/* About Us page specific styling */
+.about-us .footer {
+  justify-content: center; /* Center align the content (Team Millennium text) */
+}
+
+.about-us .footer p {
+  margin: 0; /* Ensure no margins around the text */
+}
