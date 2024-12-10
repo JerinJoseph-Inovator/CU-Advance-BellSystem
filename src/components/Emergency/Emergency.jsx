@@ -24,9 +24,7 @@ function Emergency() {
 
     try {
       const data = { mode: '1' }; // Updated data object
-      const response = await axios.post('http://172.16.216.251:8080/emergency', data, {
-        httpsAgent, // Adding the custom HTTPS agent
-      });
+      const response = await axios.post('http://172.16.216.251:8080/emergency', data);
 
       if (response.status === 200) {
         console.log('Emergency signal sent successfully!');
