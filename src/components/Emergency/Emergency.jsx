@@ -18,9 +18,9 @@ function Emergency() {
     setIsSending(true); 
 
     // Create an HTTPS agent to disable SSL verification
-    const httpsAgent = new https.Agent({
-      rejectUnauthorized: false, // Disable SSL verification for self-signed certificates
-    });
+    // const httpsAgent = new https.Agent({
+    //   rejectUnauthorized: false, // Disable SSL verification for self-signed certificates
+    // });
 
     try {
       const data = { mode: '1' }; // Updated data object
