@@ -48,9 +48,11 @@ function Midsem() {
       .then((response) => response.json())
       .then((data) => {
         console.log(`Slot ${slotData.slot} data sent successfully:`, data);
+        alert(`Slot ${slotData.slot} data sent successfully:`, data);
       })
       .catch((error) => {
         console.error(`Error sending data for Slot ${slotData.slot}:`, error);
+        alert(`Error sending data for Slot ${slotData.slot}:`, error);
       });
 
     console.log(payload);

@@ -100,37 +100,42 @@ const Endsem = () => {
     // Convert the selected time slot to 24-hour format
     const formattedTime = convertTo24HourFormat(timeSlot1.hour, timeSlot1.minute, timeSlot1.period);
   
-    // Prepare the payload with `date` in JSON format
-    const formattedDates = selectedDates.reduce((acc, date) => {
+    // Loop through selectedDates and send each as a separate payload
+    selectedDates.forEach((date) => {
       const [year, month, day] = date.split("-");
-      acc[`${day.padStart(2, "0")}/${month.padStart(2, "0")}/${year.slice(2)}`] = null; // Use null for values in JSON object
-      return acc;
-    }, {});
+      const formattedDate = `${day.padStart(2, "0")}/${month.padStart(2, "0")}/${year.slice(2)}`;
   
-    const payload = {
-      mode: "2",
-      slot: "1", // Use slot 1 here; dynamically check if needed
-      date: formattedDates,
-      start_time: formattedTime,
-    };
+      const payload = {
+        mode: "2",
+        slot: "1", // Use slot 1 here; dynamically check if needed
+        date: { [formattedDate]: null }, // Single date in JSON format
+        start_time: formattedTime,
+      };
   
-    // Send the data to the server
-    fetch("http://172.16.216.251:8080/endsem", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Data sent successfully:", data);
+      // Send the data to the server
+      fetch("http://172.16.216.251:8080/endsem", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       })
-      .catch((error) => {
-        console.error("Error sending data:", error);
-      });
-  
-    console.log(payload);
+        .then((response) => {
+          if (response.ok) {
+            alert(`Data for ${formattedDate} sent successfully.`);
+            return response.json();
+          } else {
+            throw new Error(`Failed to send data for ${formattedDate}`);
+          }
+        })
+        .then((data) => {
+          console.log(`Data for ${formattedDate} sent successfully:`, data);
+        })
+        .catch((error) => {
+          alert(`Error sending data for ${formattedDate}: ${error.message}`);
+          console.error(`Error sending data for ${formattedDate}:`, error);
+        });
+    });
   };
   
 
