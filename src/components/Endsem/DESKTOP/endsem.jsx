@@ -89,30 +89,41 @@ const Endsem = () => {
     const convertTo24HourFormat = (hour, minute, period) => {
       let hours = parseInt(hour);
       if (period === "PM" && hours !== 12) {
-        hours += 12; // Convert PM hours to 24-hour format
+        hours += 12;
       }
       if (period === "AM" && hours === 12) {
-        hours = 0; // Convert 12 AM to 00 in 24-hour format
+        hours = 0;
       }
-      return `${hours.toString().padStart(2, "0")}:${minute}:${"00"}`; // Format time as hh:mm:ss
+      return `${hours.toString().padStart(2, "0")}:${minute}:00`;
     };
   
-    // Convert the selected time slot to 24-hour format
-    const formattedTime = convertTo24HourFormat(timeSlot1.hour, timeSlot1.minute, timeSlot1.period);
+    // Determine selected time slot
+    const selectedSlot = timeSlot1.selected ? 1 : timeSlot2.selected ? 2 : null;
   
-    // Loop through selectedDates and send each as a separate payload
+    // If no slot is selected, return early with an alert
+    if (!selectedSlot) {
+      alert("Please select a time slot before saving.");
+      return;
+    }
+  
+    const selectedTimeSlot = selectedSlot === 1 ? timeSlot1 : timeSlot2;
+    const formattedTime = convertTo24HourFormat(
+      selectedTimeSlot.hour,
+      selectedTimeSlot.minute,
+      selectedTimeSlot.period
+    );
+  
     selectedDates.forEach((date) => {
       const [year, month, day] = date.split("-");
       const formattedDate = `${day.padStart(2, "0")}/${month.padStart(2, "0")}/${year.slice(2)}`;
   
       const payload = {
         mode: "2",
-        slot: "1", // Use slot 1 here; dynamically check if needed
-        date: { [formattedDate]: null }, // Single date in JSON format
+        slot: selectedSlot.toString(), // "1" or "2" based on selection
+        date: { [formattedDate]: null },
         start_time: formattedTime,
       };
   
-      // Send the data to the server
       fetch("http://172.16.216.251:8080/endsem", {
         method: "POST",
         headers: {
@@ -137,6 +148,7 @@ const Endsem = () => {
         });
     });
   };
+  
   
 
   return (
