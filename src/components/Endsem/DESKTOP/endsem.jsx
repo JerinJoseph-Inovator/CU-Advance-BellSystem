@@ -123,6 +123,8 @@ const Endsem = () => {
         date: { [formattedDate]: null },
         start_time: formattedTime,
       };
+
+      console.log("Payload to be sent:", payload);
   
       fetch("http://172.16.216.251:8080/endsem", {
         method: "POST",
